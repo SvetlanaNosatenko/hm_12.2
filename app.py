@@ -1,4 +1,5 @@
 import json
+from html import entities
 
 from flask import Flask, render_template, request
 
@@ -39,6 +40,15 @@ def card(eid: int):
         for ent in entities:
             if ent["id"] == eid:
                 return render_template("card_full.html", entity=ent)
+
+
+@app.route('/short/<int:eid>')
+def short(eid: int):
+    short_card = []
+    for ent in entities:
+        if ent["id"] == eid:
+            short_card.append(ent)
+    return render_template("card_short.html", entities=short_card)
 
 
 if __name__ == '__main__':
