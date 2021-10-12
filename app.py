@@ -35,11 +35,11 @@ def search():
 
 @app.route('/card/<int:eid>')
 def card(eid: int):
-    with open('entities.json') as f:
-        entities = json.load(f)
-        for ent in entities:
-            if ent["id"] == eid:
-                return render_template("card_full.html", entity=ent)
+    card_full = []
+    for ent in entities:
+        if ent["id"] == eid:
+            card_full.append(ent)
+    return render_template("card_full.html", entities=card_full)
 
 
 @app.route('/short/<int:eid>')

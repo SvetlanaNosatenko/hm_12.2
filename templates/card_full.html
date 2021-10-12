@@ -22,19 +22,21 @@
   </header>
   <main class="container">
     <section class="item-card">
-      <h1 class="item-card__title title">Macbook Pro 13, 2021</h1>
-      <a href="#" class="item-card__more">Показать в кратком формате</a>
+      {% for ent in entities %}
+      <h1 class="item-card__title title">{{ ent.name }}</h1>
+      <a href="/short/{{ ent.id }}" class="item-card__more">Показать в кратком формате</a>
       <div class="item-card__card">
         <div class="item-card__img-wrapper">
-          <img src="../static/img/item1.jpg" srcset="../static/img/item1_2x.jpg" alt="" class="item-card__img" />
+          <img src="../static/{{ ent.img }}" srcset="../static/{{ ent.img_set }}" alt="" class="item-card__img" />
         </div>
-        <p class="item-card__info">Модель: macbook pro</p>
-        <p class="item-card__info">Год выпуска: 2021</p>
-        <p class="item-card__info">CPU: i9 </p>
-        <p class="item-card__info">RAM: 32GB</p>
-        <p class="item-card__info">GPU: radeon d3</p>
-        <p class="item-card__info">Цена: 200 000 рублей </p>
+        <p class="item-card__info">Модель: {{ ent.model }}</p>
+        <p class="item-card__info">Год: {{ ent.year }}</p>
+        <p class="item-card__info">CPU: {{ ent.cpu }} </p>
+        <p class="item-card__info">RAM: {{ ent.ram }}</p>
+        <p class="item-card__info">GPU: {{ ent.video }}</p>
+        <p class="item-card__info">Цена: {{ ent.price }}</p>
       </div>
+      {% endfor %}
     </section>
   </main>
 </body>
